@@ -11,12 +11,10 @@ spec:
     metadata:
       labels: { app: dateflyx }
     spec:
-      imagePullSecrets:
-        - name: ecr-secret
       containers:
         - name: dateflyx
           # CI rewrites this line with the new image tag (git commit SHA)
-          image: ACCOUNT_ID.dkr.ecr.ap-south-1.amazonaws.com/dateflyx:latest
+          image: dateflyx:v1
           ports:
             - containerPort: 3000
           envFrom:
