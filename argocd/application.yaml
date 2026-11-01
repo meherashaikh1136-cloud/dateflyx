@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/YOUR_USER/dateflyx.git
+    repoURL: https://github.com/meherashaikh1136-cloud/dateflyx.git
     targetRevision: main
     path: k8s
   destination:
