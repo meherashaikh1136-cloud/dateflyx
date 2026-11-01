@@ -14,7 +14,7 @@ spec:
       containers:
         - name: dateflyx
           # CI rewrites this line with the new image tag (git commit SHA)
-          image: dateflyx:v1
+          image: ghcr.io/meherashaikh1136-cloud/dateflyx:dd759b13bd90e8c98e2ad2258a2a9f533c05ecd3
           ports:
             - containerPort: 3000
           envFrom:
