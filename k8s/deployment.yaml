@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dateflyx
+  namespace: dateflyx
+spec:
+  replicas: 2
+  selector:
+    matchLabels: { app: dateflyx }
+  template:
+    metadata:
+      labels: { app: dateflyx }
+    spec:
+      imagePullSecrets:
+        - name: ecr-secret
+      containers:
+        - name: dateflyx
+          # CI rewrites this line with the new image tag (git commit SHA)
+          image: ACCOUNT_ID.dkr.ecr.ap-south-1.amazonaws.com/dateflyx:latest
+          ports:
+            - containerPort: 3000
+          envFrom:
+            - secretRef:
+                name: dateflyx-mail
+                optional: true
+          readinessProbe:
+            httpGet: { path: /healthz, port: 3000 }
+          livenessProbe:
+            httpGet: { path: /healthz, port: 3000 }
+            initialDelaySeconds: 10
+          resources:
+            requests: { cpu: 50m, memory: 64Mi }
+            limits: { cpu: 250m, memory: 192Mi }

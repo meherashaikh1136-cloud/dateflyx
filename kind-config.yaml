@@ -1,0 +1,10 @@
+# kind cluster with host port 30080 -> NodePort 30080, so http://<EC2-IP>:30080 reaches the app
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+nodes:
+  - role: control-plane
+    extraPortMappings:
+      - containerPort: 30080
+        hostPort: 30080
+        listenAddress: "0.0.0.0"
+        protocol: TCP
